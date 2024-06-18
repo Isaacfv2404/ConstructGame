@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Event sheet 1</name>
+    <events>
+        <variable constant="0" name="gliding" sid="883807531240569" static="0" type="number">0</variable>
+        <comment>Use the down arrow to allow the player to deliberately drop down through a jump-thru platform.</comment>
+        <event-block sid="501826833320651">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="731095118591309" type="Keyboard">
+                    <param id="0" name="Key">40</param>
+                </condition>
+            </conditions>
+            <actions />
+        </event-block>
+        <comment>Allow WASD as alternate controls to arrow keys.</comment>
+        <event-block sid="730972010382887">
+            <conditions>
+                <condition id="2" name="Key is down" sid="761786660267786" type="Keyboard">
+                    <param id="0" name="Key">32</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="787249342076559" type="robot">
+                    <param id="0" name="Control">2</param>
+                </action>
+                <action id="4" name="Set animation" sid="579886128375703" type="robot">
+                    <param id="0" name="Animation">&quot;saltar&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="4" name="Set animation" sid="918364291932092" type="robot">
+                    <param id="0" name="Animation">&quot;default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="228278411429375">
+            <conditions>
+                <condition id="2" name="Key is down" sid="775249534386626" type="Keyboard">
+                    <param id="0" name="Key">65</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="482852646251548" type="robot">
+                    <param id="0" name="Control">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="944626682800744">
+            <conditions>
+                <condition id="2" name="Key is down" sid="574430505730143" type="Keyboard">
+                    <param id="0" name="Key">83</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="12" name="Fall through" sid="216642216530222" type="robot" />
+            </actions>
+        </event-block>
+        <event-block sid="940047510369125">
+            <conditions>
+                <condition id="2" name="Key is down" sid="876895754213226" type="Keyboard">
+                    <param id="0" name="Key">68</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="7" name="Simulate control" sid="432448771313937" type="robot">
+                    <param id="0" name="Control">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Mirror the player&apos;s image so they appear facing the right way when moving left or right.</comment>
+        <event-block any="1" sid="131814689586186">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="740510295101322" type="Keyboard">
+                    <param id="0" name="Key">37</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="865121269852001" type="Keyboard">
+                    <param id="0" name="Key">65</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="7" name="Set mirrored" sid="925427980410256" type="robot">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block any="1" sid="537184476433612">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="997901755440697" type="Keyboard">
+                    <param id="0" name="Key">39</param>
+                </condition>
+                <condition id="0" name="On key pressed" sid="337228929625245" type="Keyboard">
+                    <param id="0" name="Key">68</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="7" name="Set mirrored" sid="501469734359001" type="robot">
+                    <param id="0" name="State">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>If the player falls off the bottom of the layout, restart the level.</comment>
+        <event-block sid="635803436210122">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="935787975692950" type="robot">
+                    <param id="0" name="Comparison">4</param>
+                    <param id="1" name="Y co-ordinate">LayoutHeight</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-26" name="Restart layout" sid="973122542690828" type="System" />
+            </actions>
+        </event-block>
+        <event-block sid="506444676953531">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="293133696313514" type="Keyboard">
+                    <param id="0" name="Key">32</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="226516653499777" type="System">
+                    <param id="0" name="Variable">gliding</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="6" name="Set max fall speed" sid="136514341374494" type="robot">
+                    <param id="0" name="Max fall speed">100</param>
+                </action>
+                <action behavior="Platform" id="5" name="Set gravity" sid="843957044565033" type="robot">
+                    <param id="0" name="Gravity">1000</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="112716042589817">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="781024438097465" type="robot">
+                    <param id="0" name="Object">pluma</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="446638957710469" type="pluma" />
+                <action id="-9" name="Set value" sid="726187980913813" type="System">
+                    <param id="0" name="Variable">gliding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="296911692068629">
+            <conditions>
+                <condition id="3" name="On key released" sid="938987797937192" type="Keyboard">
+                    <param id="0" name="Key">32</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="Platform" id="6" name="Set max fall speed" sid="614008245931257" type="robot">
+                    <param id="0" name="Max fall speed">1000</param>
+                </action>
+                <action behavior="Platform" id="5" name="Set gravity" sid="332385240892560" type="robot">
+                    <param id="0" name="Gravity">1500</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="630572784509928">
+            <conditions>
+                <condition id="2" name="Mouse button is down" sid="895200727129123" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="908375701858221" type="Sprite22">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-22" name="Set angle toward position" sid="666273163171925" type="Sprite22">
+                    <param id="0" name="X">Mouse.X</param>
+                    <param id="1" name="Y">Mouse.Y</param>
+                </action>
+                <action id="0" name="Spawn another object" sid="643147025913380" type="Sprite22">
+                    <param id="0" name="Object">Sprite23</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="Image point">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="683341069765855">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="424298374098563" type="System" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="346659373360922" type="System">
+                    <param id="0" name="Object to create">Sprite22</param>
+                    <param id="1" name="Layer">1</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">0</param>
+                </action>
+                <action id="-29" name="Move to object" sid="532023311358769" type="Sprite22">
+                    <param id="0" name="Where">0</param>
+                    <param id="1" name="Object">robot</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="230087336711870">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="449599753353308" type="System" />
+            </conditions>
+            <actions>
+                <action id="-4" name="Set position to another object" sid="566408301374455" type="Sprite22">
+                    <param id="0" name="Object">robot</param>
+                    <param id="1" name="Image point (optional)">1</param>
+                </action>
+                <action id="-17" name="Set layer scale" sid="273165217565202" type="System">
+                    <param id="0" name="Layer">&quot;Game&quot;</param>
+                    <param id="1" name="Scale">0.5</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="374629096021547">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="549788714848870" type="Sprite23">
+                    <param id="0" name="Object">Sprite4</param>
+                </condition>
+                <condition behavior="LineOfSight" id="0" name="Has LOS to object" sid="710300223434162" type="Sprite4">
+                    <param id="0" name="Object">Sprite22</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action behavior="MoveTo" id="6" name="Move to object" sid="379854416781837" type="Sprite4">
+                    <param id="0" name="Target">Sprite22</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="458172304913019">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="429384397458162" type="robot">
+                    <param id="0" name="Object">Sprite4</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="940632688582222" type="Sprite4" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>
